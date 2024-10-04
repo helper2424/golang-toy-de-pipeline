@@ -18,9 +18,12 @@
 8. You should see something like `2024/10/04 22:48:47 Processed 1000 records`
 9. Open the http://localhost:8123/play
 10. Run 
-```select project_id, toDate(date) as date, SUM(volume_usd) as volume
+```
+select project_id, toDate(date), SUM(volume_usd)
 from transactions
-group by project_id, date;
+group by project_id, toDate(date)
+order by toDate(date) desc
+
 ```
 11. You should see the final result - volume aggregations y projects/dates
 
